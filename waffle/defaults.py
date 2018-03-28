@@ -5,6 +5,8 @@ COOKIE = 'dwf_%s'
 TEST_COOKIE = 'dwft_%s'
 SECURE = True
 MAX_AGE = 2592000  # 1 month in seconds
+FLAG_GROUP_MODEL = 'auth.Group'
+USER_FLAGS_GROUPS_ATTRIBUTE = 'groups'
 
 CACHE_PREFIX = 'waffle:'
 CACHE_NAME = 'default'

@@ -3,6 +3,8 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.utils.timezone
+from waffle.utils import get_setting
+
 
 
 class Migration(migrations.Migration):
@@ -42,7 +44,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='flag',
             name='groups',
-            field=models.ManyToManyField(blank=True, help_text='Activate this flag for these user groups.', to='auth.Group', verbose_name='Groups'),
+            field=models.ManyToManyField(blank=True, help_text='Activate this flag for these user groups.', to=get_setting('FLAG_GROUP_MODEL'), verbose_name='Groups'),
         ),
         migrations.AlterField(
             model_name='flag',

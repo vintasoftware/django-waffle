@@ -167,7 +167,7 @@ class Flag(BaseModel):
         verbose_name=_('Languages'),
     )
     groups = models.ManyToManyField(
-        Group,
+        get_setting('FLAG_GROUP_MODEL'),
         blank=True,
         help_text=_('Activate this flag for these user groups.'),
         verbose_name=_('Groups'),
@@ -264,10 +264,12 @@ class Flag(BaseModel):
         if hasattr(user, 'pk') and user.pk in user_ids:
             return True
 
-        if hasattr(user, 'groups'):
+        flags_groups_attr_name = get_setting('USER_FLAGS_GROUPS_ATTRIBUTE')
+        if hasattr(user, flags_groups_attr_name):
             group_ids = self._get_group_ids()
-            user_groups = set(user.groups.all().values_list('pk', flat=True))
-            if group_ids.intersection(user_groups):
+            user_groups = getattr(user, flags_groups_attr_name).all()
+            user_groups_ids = set(user_groups.values_list('pk', flat=True))
+            if group_ids.intersection(user_groups_ids):
                 return True
         return None
 

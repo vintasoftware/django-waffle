@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models, migrations
 import django.utils.timezone
 from django.conf import settings
+from waffle.utils import get_setting
 
 
 class Migration(migrations.Migration):
@@ -30,7 +31,7 @@ class Migration(migrations.Migration):
                 ('note', models.TextField(help_text='Note where this Flag is used.', blank=True)),
                 ('created', models.DateTimeField(default=django.utils.timezone.now, help_text='Date when this Flag was created.', db_index=True)),
                 ('modified', models.DateTimeField(default=django.utils.timezone.now, help_text='Date when this Flag was last modified.')),
-                ('groups', models.ManyToManyField(help_text='Activate this flag for these user groups.', to='auth.Group', blank=True)),
+                ('groups', models.ManyToManyField(help_text='Activate this flag for these user groups.', to=get_setting('FLAG_GROUP_MODEL'), blank=True)),
                 ('users', models.ManyToManyField(help_text='Activate this flag for these users.', to=settings.AUTH_USER_MODEL, blank=True)),
             ],
             options={
