@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='django-waffle',
-    version='0.14.0',
+    name='vinta-django-waffle',
+    version='0.15.0',
     description='A feature flipper for Django.',
     long_description=open('README.rst').read(),
-    author='James Socol',
-    author_email='me@jamessocol.com',
-    url='http://github.com/jsocol/django-waffle',
+    author='Vinta Software',
+    author_email='contact@vinta.com.br',
+    url='http://github.com/vintasoftware/django-waffle',
     license='BSD',
     packages=find_packages(exclude=['test_app', 'test_settings']),
     include_package_data=True,
